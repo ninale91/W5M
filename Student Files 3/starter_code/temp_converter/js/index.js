@@ -1,60 +1,61 @@
  $(document).ready(start);
 
  function start() {
-   $('#submit').click(compareNumbers);
+   $('#c-to-f').click(celiusToFehrenheit);
+   $('#f-to-c').click(fehrenheitToCelius);
  }
 
-function convertToCelius(){
 
-}
 
-function fehrenheitToCelius(){
-  
+function celiusToFehrenheit(e){
+  e.preventDefault();
+  celiusValue();
+  var trueCeliusValue = celiusValue();
+  convertCToF(trueCeliusValue);
+  var finalFehrenheit = convertCToF(trueCeliusValue);
+  displayFehrenheitResult(finalFehrenheit);
 }
 
 function celiusValue(){
-  var rawCelius= $('#celsius').val();
-  var floatCelius= parseInt(rawCelius);
+  var rawCelius = $('#celsius').val();
+  var floatCelius = parseInt(rawCelius);
   return floatCelius;
+  convertCToF(floatCelius);
 }
 
-function fahrenheitValue(){
-  var rawFahrenheit= $('#celsius').val();
-  var floatFahrenheit= parseInt(rawFahrenheit);
-  return floatFahrenheit;
+function convertCToF(trueCeliusValue){
+  fehrenheitValue = trueCeliusValue * (9/5) + 32;
+  console.log(fehrenheitValue);
+  return fehrenheitValue;
 }
 
-//
-// function compareNumbers() {
-//   var a = $('#a').val();
-//   a = parseInt(a);
-//
-//   var b = $('#b').val();
-//   b = parseInt(b);
-//
-//   if(a < b) {
-//     setAsLessThan();
-//   } else if (a > b) {
-//     setAsMoreThan();
-//   } else if (a == b) {
-//     setAsEqualTo();
-//   } else {
-//     alert('something is very wrong');
-//   }
-// }
-//
-// //function calculateFValue(Cvalue){
-// return(Cvalue)
-// }
-//
-// function setAsLessThan() {
-//   $('#comparison').text('<');
-// }
-//
-// function setAsMoreThan() {
-//   $('#comparison').text('>');
-// }
-//
-// function setAsEqualTo() {
-//   $('#comparison').text('==');
-// }
+function displayFehrenheitResult(finalFehrenheit){
+  $('#fahrenheit').val(fehrenheitValue);
+}
+
+function fehrenheitToCelius(e){
+  e.preventDefault();
+  fehrenheitValue();
+  var trueFehrenheitValue = fehrenheitValue();
+  convertFToC(trueFehrenheitValue);
+  var finalCelius = convertFToC(trueFehrenheitValue);
+  displayCeliusResult(finalCelius);
+
+}
+
+function fehrenheitValue(){
+  var rawFehrenheit= $('#fehrenheit').val();
+  var floatFehrenheit= parseInt(rawFehrenheit);
+  return floatFehrenheit;
+  convertFToC(floatFehrenheit);
+}
+
+function convertFToC(trueFehrenheitValue){
+  celsiusValue = (trueFehrenheitValue-32) * (5/9);
+  console.log(celsiusValue);
+  return celsiusValue;
+}
+
+function displayCeliusResult(finalCelius){
+  $('#celsius').val(celsiusValue);
+}
